@@ -1,0 +1,14 @@
+﻿@using FluentBootstrap
+@model WGS.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (var form = Html.Bootstrap().Form().Begin())
+{
+    @form.EditorFor(m=>m.UserName)
+    @form.PasswordFor(m => m.Password)
+    @form.Submit()
+}
