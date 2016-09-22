@@ -214,9 +214,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CustomBaseLayoutPage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomUserStore.cs" />
     <Compile Include="Models\Models.cs" />

@@ -18,7 +18,7 @@ namespace WGS.Security
 
         public static ApplicationSignInManager Create()
         {
-            return new ApplicationSignInManager(HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(),HttpContext.Current.GetOwinContext().Authentication);
+            return new ApplicationSignInManager(HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>(), HttpContext.Current.GetOwinContext().Authentication);
         }
     }
 }

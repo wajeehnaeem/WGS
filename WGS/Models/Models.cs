@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using FluentBootstrap;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -8,16 +9,30 @@ namespace WGS.Models
     public class Instructor : User
     {
         public IEnumerable<Question> Questions { get; set; }
+
+        public Instructor(ClaimsPrincipal claimsPrincipal) : base(claimsPrincipal)
+        {
+        }
     }
     public class Student : User
     {
         public IEnumerable<Enrollment> Enrollments { get; set; }
         public IEnumerable<Answer> Answers { get; set; }
 
+        public Student(ClaimsPrincipal claimsPrincipal) : base(claimsPrincipal)
+        {
+        }
     }
 
     public class User : IdentityUser
     {
+        private ClaimsPrincipal claimsPrincipal;
+
+        public User(ClaimsPrincipal claimsPrincipal)
+        {
+            this.claimsPrincipal = claimsPrincipal;
+        }
+
         public String FirstName { get; set; }
         public String LastName { get; set; }
      

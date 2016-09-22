@@ -15,12 +15,7 @@ namespace WGS.Controllers
     {
 
 
-        private ApplicationSignInManager _signInManager;
-        public ApplicationSignInManager ApplicationSignManager
-        {
-            get { return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>(); }
-            private set { _signInManager = value; }
-        }
+       
 
         public ActionResult Login() => View();
 
@@ -28,17 +23,7 @@ namespace WGS.Controllers
         public ActionResult Login(LoginViewModel model)
         {
 
-            User user = new User()
-            {
-                FirstName = "Wajeeh",
-                LastName = "Ahmed",
-                Email = "wajeehnaeem@yahoo.com",
-                UserName = "ahmed"
-            };
-            HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>().Create(user, "Wajeeh_ahmed93");
-
-
-            SignInStatus status = ApplicationSignManager.PasswordSignIn(userName: model.UserName,
+            SignInStatus status = Helpers.ApplicationSignManager.PasswordSignIn(userName: model.UserName,
                 password: model.Password, isPersistent: false, shouldLockout: false);
             switch (status)
             {
