@@ -1,0 +1,17 @@
+﻿@using BForms.Html
+@using FluentBootstrap
+@{
+    ViewBag.Title = "RegisterStudent";
+}
+@model WGS.ViewModels.ExistingStudentRegistrationViewModel
+<h2>Register Existing Student</h2>
+
+<h3>@ViewBag.Message</h3>
+@using (var form = Html.Bootstrap().Form().Begin())
+{
+    @form.SelectFor(c=>c.LevelName, Model.Levels)
+    @form.EditorFor(c=>c.FirstName)
+    @form.EditorFor(c=>c.LastName)
+    @form.EditorFor(c=>c.GrNo)
+    @form.Submit()
+}

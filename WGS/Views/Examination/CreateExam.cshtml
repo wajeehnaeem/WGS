@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "CreateExam";
+}
+
+<h2>Setup a new Exam</h2>
+
+@using FluentBootstrap
+@model WGS.ViewModels.CreateExamViewModel
+<h3>@ViewBag.Message</h3>
+
+
+@using (var form = Html.Bootstrap().Form().Begin())
+{
+    @form.EditorFor(c => c.Name)
+    @form.SelectFor(c => c.LevelName, Model.Levels)
+    @form.InputFor(c => c.DateFrom, FormInputType.DateTimeLocal)
+    @form.InputFor(c => c.DateTo, FormInputType.DateTimeLocal)
+    @form.EditorFor(c => c.IsActive)
+    @form.Submit()
+}
+

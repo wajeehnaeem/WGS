@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ListExam";
+}
+
+@using FluentBootstrap
+@model IEnumerable<WGS.Models.Exam>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Exam Name</th>
+            <th>Starting Date Time</th>
+            <th>Ending Date Time</th>
+            <th>Is Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var exam in Model)
+        {
+            <tr>
+                <td>@exam.Name</td>
+                <td>@exam.DateFrom</td>
+                <td>@exam.DateTo</td>
+                <td>@exam.IsActive</td>
+                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "AddQuestions", routeValues: new { @ExamId = exam.Id }, text: "Select")</td>
+                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ExamDetails", routeValues: new { @ExamId = exam.Id }, text: "Details")</td>
+            </tr>
+        }
+    </tbody>
+</table>

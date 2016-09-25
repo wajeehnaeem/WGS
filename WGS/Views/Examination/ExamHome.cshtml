@@ -1,0 +1,11 @@
+﻿@using DocumentFormat.OpenXml.Office.CustomUI
+@using FluentBootstrap
+
+@{
+    ViewBag.Title = "ExamHome";
+}
+
+<h2>Exam Dashboard</h2>
+
+@Html.Bootstrap().LinkButton(controllerName: "Examination", actionName: "ListExam", text: "View Exams List", routeValues: null)
+@Html.Bootstrap().LinkButton(controllerName: "Examination", actionName: "CreateExam", text: "Create New Exam", routeValues: null)

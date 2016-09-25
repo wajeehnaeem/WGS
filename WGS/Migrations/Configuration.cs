@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -21,6 +22,77 @@ namespace WGS.Migrations
 
         protected override void Seed(WGS.Models.WgsDbContext context)
         {
+            List<Level> Levels = new List<Level>
+            {
+                new Level {Name="Class 1"},
+                new Level {Name="Class 2" },
+
+                new Level {Name="Class 3"},
+                new Level {Name="Class 4" },
+                new Level {Name="Class 5"},
+                new Level {Name="Class 6" },
+                new Level {Name="Class 7"},
+                new Level {Name="Class 8" },
+                new Level {Name="Class 9"},
+                new Level {Name="Class 10" },
+                new Level {Name="Entrance Test"},
+
+                new Level {Name="Entrance Test Class 1"},
+                new Level {Name="Entrance Test Class 2" },
+
+                new Level {Name="Entrance Test Class 3"},
+                new Level {Name="Entrance Test Class 4" },
+                new Level {Name="Entrance Test Class 5"},
+                new Level {Name="Entrance Test Class 6" },
+                new Level {Name="Entrance Test Class 7"},
+                new Level {Name="Entrance Test Class 8" },
+                new Level {Name="Entrance Test Class 9"},
+                new Level {Name="Entrance Test Class 10" },
+
+            };
+            Levels.ForEach(l =>
+            {
+                if (!context.Levels.Any(level => level.Name == l.Name))
+                {
+                    context.Levels.Add(l);
+                }
+                
+            });
+            UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(context));
+            AppUser user = new AppUser()
+            {
+                FirstName = "Wajeeh Ahmed",
+                LastName = "Siddiqui",
+                Email = "wajeehnaeem@yahoo.com",
+                UserName = "wajeehnaeem",
+                Password = "Wajeeh_ahmed93"
+
+            };
+
+            userManager.Create(user, "Wajeeh_ahmed93");
+            var adminUser = userManager.FindByEmail("wajeehnaeem@yahoo.com");
+
+            List<IdentityRole> roles = new List<IdentityRole>
+            {
+                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Administrator"},
+                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Student"},
+                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Instructor"},
+                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Examiner"},
+                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Exam Preparer"}
+            };
+
+            roles.ForEach(r =>
+            {
+
+                if (!context.Roles.Any(role => role.Name == r.Name))
+                {
+                    context.Roles.AddOrUpdate(r);
+                }
+            });
+            roles.ForEach(r => { userManager.AddToRole(adminUser.Id, r.Name); });
+
+
+
             //User user = new User()
             //{
             //    Id = Guid.NewGuid().ToString(),

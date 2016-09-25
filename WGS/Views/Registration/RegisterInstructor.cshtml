@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "RegisterInstructor";
+}
+@using FluentBootstrap
+@model WGS.ViewModels.InstructorRegistrationViewModel
+<h2>Register Instructor</h2>
+<h3>@ViewBag.Message</h3>
+@using (var form = Html.Bootstrap().Form().Begin())
+{
+    @form.EditorFor(c=>c.FirstName);
+    @form.EditorFor(c=>c.LastName)
+    @form.EditorFor(c=>c.Identifier)
+    @form.Submit()
+}
+

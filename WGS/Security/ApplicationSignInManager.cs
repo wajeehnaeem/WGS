@@ -9,9 +9,9 @@ using WGS.Models;
 
 namespace WGS.Security
 {
-    public class ApplicationSignInManager : SignInManager<User, String>
+    public class ApplicationSignInManager : SignInManager<AppUser, String>
     {
-        public ApplicationSignInManager(UserManager<User, string> userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
+        public ApplicationSignInManager(UserManager<AppUser, string> userManager, IAuthenticationManager authenticationManager) : base(userManager, authenticationManager)
         {
 
         }

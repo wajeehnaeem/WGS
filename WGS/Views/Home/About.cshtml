@@ -1,9 +1,13 @@
-﻿@{
+﻿@using Microsoft.AspNet.Identity
+@{
     ViewBag.Title = "About";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
-
-
+<h3>@User.Identity.AuthenticationType</h3>
+<h3>@User.Identity.IsAuthenticated</h3>
+<h3>@User.Identity.Name</h3>
+<h3>@User.Identity.GetUserId()</h3>
+<h3>@User.Identity.GetUserName()</h3>

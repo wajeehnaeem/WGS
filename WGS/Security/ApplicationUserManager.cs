@@ -8,7 +8,7 @@ using WGS.Models;
 
 namespace WGS.Security
 {
-    public class ApplicationUserManager : UserManager<User, String>
+    public class ApplicationUserManager : UserManager<AppUser, String>
     {
         public ApplicationUserManager() : base(new CustomUserStore())
         {
@@ -17,7 +17,10 @@ namespace WGS.Security
 
         public static ApplicationUserManager Create()
         {
-            return new ApplicationUserManager();
+            ApplicationUserManager manager = new ApplicationUserManager();
+            manager.UserValidator = new UserValidator<AppUser>(manager) { RequireUniqueEmail = true };
+            return manager;
+
         }
     }
 }
