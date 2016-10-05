@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Repository;
 using WGS.Models;
 using WGS.ViewModels;
 
@@ -10,10 +12,11 @@ namespace WGS.Controllers
 {
     public class ExaminationController : Controller
     {
+        public ActionResult ExamHome() => View();
         // GET: Exam
         public ActionResult CreateExam() => View(new CreateExamViewModel());
 
-        public ActionResult ListExam() => View(Helpers.Context.Exams.ToList());
+        public ActionResult ListExam() => View(Helpers.Context.Exams.Include(e => e.Level).ToList());
 
         [HttpPost]
         public ActionResult CreateExam(CreateExamViewModel model)
@@ -21,6 +24,7 @@ namespace WGS.Controllers
             if (!ModelState.IsValid) return View(model);
             Exam exam = new Exam()
             {
+                Id=Guid.NewGuid().ToString(),
                 Name = model.Name,
                 DateFrom = model.DateFrom,
                 DateTo = model.DateTo,
@@ -43,9 +47,6 @@ namespace WGS.Controllers
             return View(new CreateExamViewModel());
         }
 
-        public ActionResult AddQuestions(String ExamId)
-        {
-
-        }
+      
     }
 }

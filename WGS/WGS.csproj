@@ -217,17 +217,21 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\ExamController.cs" />
+    <Compile Include="Controllers\ExaminationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\CustomUserStore.cs" />
+    <Compile Include="Models\CustomStores.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\WGSDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GenericDataRepository.cs" />
+    <Compile Include="Repositories\QuestionRepository.cs" />
+    <Compile Include="Security\ApplicationRoleManager.cs" />
     <Compile Include="Security\ApplicationSignInManager.cs" />
     <Compile Include="Security\ApplicationUserManager.cs" />
     <Compile Include="ViewModels\ExamViewModels.cs" />
@@ -459,11 +463,11 @@
     <Content Include="Views\Examination\CreateExam.cshtml" />
     <Content Include="Views\Examination\ListExam.cshtml" />
     <Content Include="Views\Examination\ExamHome.cshtml" />
-    <Content Include="Views\Examination\AddQuestions.cshtml" />
+    <Content Include="Views\Questions\ListQuestions.cshtml" />
+    <Content Include="Views\Questions\AddQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Exam\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

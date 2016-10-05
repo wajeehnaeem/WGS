@@ -31,7 +31,6 @@ namespace WGS.Models
         public String LastName { get; set; }
 
     }
-
     public class Level
     {
         [Key]
@@ -43,8 +42,8 @@ namespace WGS.Models
     }
     public class Exam
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        
+        public String Id { get; set; }
         public String Name { get; set; }
         public Boolean IsActive { get; set; }
         public DateTime DateFrom { get; set; }
@@ -56,15 +55,15 @@ namespace WGS.Models
     }
     public class Enrollment
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+     
+        public String Id { get; set; }
         public AppUser AppUser { get; set; }
         public Exam Exam { get; set; }
     }
     public class Question
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        
+        public String Id { get; set; }
         public String QuestionText { get; set; }
         public ICollection<Choice> Choices { get; set; }
         public Exam Exam { get; set; }
@@ -73,8 +72,8 @@ namespace WGS.Models
     }
     public class Choice
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+
+        public String Id { get; set; }
         public String ChoiceText { get; set; }
         public Question Question { get; set; }
         public Boolean IsCorrect { get; set; }
@@ -82,8 +81,7 @@ namespace WGS.Models
     }
     public class Answer
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+       public String Id { get; set; }
         public String AnswerText { get; set; }
         public Question Question { get; set; }
         public Student GivenBy { get; set; }

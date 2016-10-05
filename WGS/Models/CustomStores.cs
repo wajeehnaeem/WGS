@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity;
@@ -12,7 +13,15 @@ namespace WGS.Models
     {
         public CustomUserStore() : base(HttpContext.Current.GetOwinContext().Get<WgsDbContext>())
         {
-                
+
         }
     }
+    public class CustomRoleStore : RoleStore<IdentityRole>
+    {
+        public CustomRoleStore() : base(HttpContext.Current.GetOwinContext().Get<WgsDbContext>())
+        {
+
+        }
+    }
+
 }

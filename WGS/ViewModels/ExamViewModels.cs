@@ -42,6 +42,19 @@ namespace WGS.ViewModels
 
     public class AddQuestionsToExamViewModel
     {
+        public List<Question> Questions { get; set; }
+        public String ExamId { get; set; }
+        public String QuestionText { get; set; }
+        public List<Choice> Choices { get; set; }
+
     }
 
+    public class AddChoiceToQuestionViewModel
+    {
+        public Question Question { get; set; }
+        public String ChoiceText { get; set; }
+        public Boolean IsCorrect { get; set; }
+        public String Reason { get; set; }
+
+    }
 }

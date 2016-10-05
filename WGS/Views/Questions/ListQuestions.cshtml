@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WGS.Models.Question>
+@using System.Web.Mvc.Ajax
+@using FluentBootstrap
+@using PerpetuumSoft.Knockout
+@using WebGrease
+
+
+@{
+    ViewBag.Title = "AddQuestions";
+
+}
+
+
+<h2>Add or modify Questions</h2>
+@using (var grid = Html.Bootstrap().GridColumn(4).Begin())
+{
+    <table class="table table-responsive table-bordered">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Answers</th>
+            </tr>
+        </thead>
+
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>
+                    @question.QuestionText
+                    @question.Choices.Count
+                </td>
+            </tr>
+        }
+    </table>
+    AjaxOptions options = new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "QuestionDetailsDiv", LoadingElementId = "QuestionDetailsDiv" };
+
+    var firstOrDefault = Model.FirstOrDefault();
+    if (firstOrDefault != null)
+    {
+        @Ajax.ActionLink(linkText: "Add new Question", controllerName: "Questions", actionName: "AddQuestion", ajaxOptions: options, routeValues: new { @ExamId = firstOrDefault.Exam.Id })
+    }
+}
+
+@using (var grid = Html.Bootstrap().GridColumn(8).Begin())
+{
+    <div class="container-fluid" id="QuestionDetailsDiv"></div>
+}

@@ -6,13 +6,14 @@
 @using FluentBootstrap
 @model IEnumerable<WGS.Models.Exam>
 
-<table class="table">
+<table class="table table-responsive table-bordered table-striped top-margin-spacing">
     <thead>
         <tr>
             <th>Exam Name</th>
             <th>Starting Date Time</th>
             <th>Ending Date Time</th>
             <th>Is Active</th>
+            <th>Exam Level</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +24,8 @@
                 <td>@exam.DateFrom</td>
                 <td>@exam.DateTo</td>
                 <td>@exam.IsActive</td>
-                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "AddQuestions", routeValues: new { @ExamId = exam.Id }, text: "Select")</td>
+                <td>@exam.Level.Name</td>
+                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ListQuestions", routeValues: new { @ExamId = exam.Id }, text: "Select")</td>
                 <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ExamDetails", routeValues: new { @ExamId = exam.Id }, text: "Details")</td>
             </tr>
         }

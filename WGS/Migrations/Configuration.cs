@@ -56,9 +56,9 @@ namespace WGS.Migrations
                 {
                     context.Levels.Add(l);
                 }
-                
+
             });
-            UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(context));
+            var userManager = new UserManager<AppUser>(new UserStore<AppUser>(context));
             AppUser user = new AppUser()
             {
                 FirstName = "Wajeeh Ahmed",
@@ -70,27 +70,16 @@ namespace WGS.Migrations
             };
 
             userManager.Create(user, "Wajeeh_ahmed93");
+
             var adminUser = userManager.FindByEmail("wajeehnaeem@yahoo.com");
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            roleManager.Create(new IdentityRole("Administrator"));
+            roleManager.Create(new IdentityRole("Student"));
+            roleManager.Create(new IdentityRole("Instructor"));
+            roleManager.Create(new IdentityRole("Examiner"));
+            roleManager.Create(new IdentityRole("Exam Preparer"));
 
-            List<IdentityRole> roles = new List<IdentityRole>
-            {
-                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Administrator"},
-                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Student"},
-                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Instructor"},
-                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Examiner"},
-                new IdentityRole() {Id = Guid.NewGuid().ToString(), Name = "Exam Preparer"}
-            };
-
-            roles.ForEach(r =>
-            {
-
-                if (!context.Roles.Any(role => role.Name == r.Name))
-                {
-                    context.Roles.AddOrUpdate(r);
-                }
-            });
-            roles.ForEach(r => { userManager.AddToRole(adminUser.Id, r.Name); });
-
+           userManager.AddToRoles(adminUser.Id, "Administrator", "Student", "Instructor", "Examiner", "Exam Preparer");
 
 
             //User user = new User()
