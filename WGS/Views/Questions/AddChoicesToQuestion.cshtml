@@ -1,0 +1,28 @@
+﻿@using FluentBootstrap
+@model WGS.ViewModels.AddChoiceToQuestionViewModel
+@{
+    ViewBag.Title = "AddChoicesToQuestion";
+    AjaxOptions options = new AjaxOptions() { UpdateTargetId = "ChoicesCountDiv", HttpMethod = "POST" };
+    @Scripts.Render("~/bundles/ajax")
+    @Styles.Render("~/bundles/bootstrap")
+}
+
+<h2>Add Choices To Question</h2>
+
+@using (Ajax.BeginForm(controllerName: "Questions", actionName: "AddChoicesToQuestion", ajaxOptions: options))
+{
+    @Html.HiddenFor(m=>m.QuestionId)
+    @Html.HiddenFor(m=>m.ExamId)
+    @Html.Bootstrap().EditorFor(e=>e.ChoiceText)
+    @Html.Bootstrap().CheckBoxFor(e=>e.IsCorrect)
+    @Html.Bootstrap().EditorFor(e=>e.Reason)
+    @Html.Bootstrap().Submit("Add Choice")
+}
+
+@Html.ActionLink("Save Changes", controllerName: "Questions", actionName: "ListQuestions", routeValues: new {QuestionId = Model.QuestionId, ExamId = Model.ExamId}, htmlAttributes: null)
+
+@Html.Bootstrap().GridRow()
+
+<div id="ChoicesCountDiv">
+    @Html.Action(controllerName: "Questions", actionName: "ListChoicesForQuestion", routeValues: new {@Model.QuestionId})
+</div>

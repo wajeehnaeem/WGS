@@ -1,47 +1,49 @@
-﻿@model IEnumerable<WGS.Models.Question>
+﻿@model WGS.ViewModels.AddQuestionsToExamViewModel
 @using System.Web.Mvc.Ajax
 @using FluentBootstrap
-@using PerpetuumSoft.Knockout
-@using WebGrease
 
 
 @{
     ViewBag.Title = "AddQuestions";
-
+    AjaxOptions options = new AjaxOptions() { UpdateTargetId = "QuestionDetailsDiv", HttpMethod = "GET", InsertionMode = InsertionMode.Replace };
 }
 
 
 <h2>Add or modify Questions</h2>
 @using (var grid = Html.Bootstrap().GridColumn(4).Begin())
 {
+    <h3>Exam ID: @Model.ExamId</h3>
     <table class="table table-responsive table-bordered">
         <thead>
             <tr>
                 <th>Question</th>
-                <th>Answers</th>
+                <th>Actions</th>
             </tr>
         </thead>
-
-        @foreach (var question in Model)
+        @if (Model.Questions != null)
         {
-            <tr>
-                <td>
-                    @question.QuestionText
-                    @question.Choices.Count
-                </td>
-            </tr>
+            foreach (var question in Model.Questions)
+            {
+                <tr>
+                    <td>@question.QuestionText</td>
+                    <td>@Ajax.ActionLink(linkText: "Select", controllerName: "Questions", actionName: "AddChoicesToQuestion", routeValues: new { QuestionId = question.Id, ExamId = Model.ExamId }, htmlAttributes: new { @class = "btn btn-primary" }, ajaxOptions: options)</td>
+                </tr>
+            }
         }
-    </table>
-    AjaxOptions options = new AjaxOptions() { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "QuestionDetailsDiv", LoadingElementId = "QuestionDetailsDiv" };
 
-    var firstOrDefault = Model.FirstOrDefault();
-    if (firstOrDefault != null)
+
+    </table>
+
+    using (var form = Html.Bootstrap().Form(controllerName: "Questions", actionName: "AddQuestion", routeValues: new {Model.ExamId}).Begin())
     {
-        @Ajax.ActionLink(linkText: "Add new Question", controllerName: "Questions", actionName: "AddQuestion", ajaxOptions: options, routeValues: new { @ExamId = firstOrDefault.Exam.Id })
+        @form.EditorFor(f => f.QuestionText)
+        @form.Submit("Add Question")
     }
 }
 
-@using (var grid = Html.Bootstrap().GridColumn(8).Begin())
+@using (Html.Bootstrap().GridColumn(8).Begin())
 {
-    <div class="container-fluid" id="QuestionDetailsDiv"></div>
+    <div class="container-fluid" id="QuestionDetailsDiv">
+
+    </div>
 }

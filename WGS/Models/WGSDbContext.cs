@@ -12,7 +12,7 @@ namespace WGS.Models
 
         public WgsDbContext() : base("Server=(local);User ID=sa;Password=Wajeeh_ahmed93;Initial Catalog=WGSTESTING;Persist Security Info=true")
         {
-
+            
         }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Exam> Exams { get; set; }

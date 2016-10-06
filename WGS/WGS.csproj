@@ -464,7 +464,8 @@
     <Content Include="Views\Examination\ListExam.cshtml" />
     <Content Include="Views\Examination\ExamHome.cshtml" />
     <Content Include="Views\Questions\ListQuestions.cshtml" />
-    <Content Include="Views\Questions\AddQuestion.cshtml" />
+    <Content Include="Views\Questions\AddChoicesToQuestion.cshtml" />
+    <Content Include="Views\Questions\ListChoicesForQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
