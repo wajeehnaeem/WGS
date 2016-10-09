@@ -12,6 +12,7 @@ namespace WGS.Security
     {
         public ApplicationRoleManager(IRoleStore<IdentityRole, string> store) : base(store)
         {
+            
         }
 
         public static ApplicationRoleManager Create()

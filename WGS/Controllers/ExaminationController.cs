@@ -30,6 +30,7 @@ namespace WGS.Controllers
                 DateTo = model.DateTo,
                 IsActive = model.IsActive
             };
+
             var Level = Helpers.Context.Levels.FirstOrDefault(l => l.Name == model.LevelName);
             if (
                 Helpers.Context.Exams.Any(

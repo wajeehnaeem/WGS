@@ -2,12 +2,30 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Security.Claims;
 using FluentBootstrap;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WGS.Models
 {
+    public class Category
+    {
+        public Category()
+        {
+
+        }
+
+        public Category(String Name)
+        {
+            this.Name = Name;
+            Id = Guid.NewGuid().ToString();
+        }
+
+        public String Id { get; set; }
+        public String Name { get; set; }
+        public ICollection<Question> Questions { get; set; }
+    }
     public class Instructor : AppUser
     {
         public String Identifier { get; set; }
@@ -23,7 +41,6 @@ namespace WGS.Models
         public ICollection<Answer> Answers { get; set; }
         public ICollection<Level> Levels { get; set; }
     }
-
     public class AppUser : IdentityUser
     {
         public String Password { get; set; }
@@ -62,7 +79,7 @@ namespace WGS.Models
     }
     public class Question
     {
-        
+        public Category Category { get; set; }
         public String Id { get; set; }
         public String QuestionText { get; set; }
         public ICollection<Choice> Choices { get; set; }

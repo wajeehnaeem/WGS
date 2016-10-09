@@ -22,6 +22,23 @@ namespace WGS.Migrations
 
         protected override void Seed(WGS.Models.WgsDbContext context)
         {
+            List<Category> Categories = new List<Category>()
+            {
+                new Category("General Knowledge"),
+                new Category("Science"),
+                new Category("Mathematics"),
+                new Category("English"),
+                new Category("Chemistry"),
+                new Category("Physics"),
+                new Category("Biology"),
+                new Category("Islamiat"),
+                new Category("History"),
+                new Category("Pakistan History")
+             };
+
+            context.Categories.AddRange(Categories);
+            context.SaveChanges();
+
             List<Level> Levels = new List<Level>
             {
                 new Level {Name="Class 1"},
@@ -79,7 +96,7 @@ namespace WGS.Migrations
             roleManager.Create(new IdentityRole("Examiner"));
             roleManager.Create(new IdentityRole("Exam Preparer"));
 
-           userManager.AddToRoles(adminUser.Id, "Administrator", "Student", "Instructor", "Examiner", "Exam Preparer");
+            userManager.AddToRoles(adminUser.Id, "Administrator", "Student", "Instructor", "Examiner", "Exam Preparer");
 
 
             //User user = new User()

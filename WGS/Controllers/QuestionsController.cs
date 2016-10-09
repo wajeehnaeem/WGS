@@ -11,7 +11,7 @@ namespace WGS.Controllers
 {
     public class QuestionsController : Controller
     {
-       public ActionResult ListQuestions(String ExamId)
+        public ActionResult ListQuestions(String ExamId)
         {
             if (String.IsNullOrEmpty(ExamId))
             {
@@ -22,12 +22,10 @@ namespace WGS.Controllers
             var exam = examRepository.GetSingle(e => e.Id == ExamId, Exam => Exam.Questions);
 
             var questions = exam?.Questions;
-            var QuestionVm = new AddQuestionsToExamViewModel() { Questions = questions, ExamId = ExamId };
+            var QuestionVm = new AddQuestionsToExamViewModel() { Questions = questions, ExamId = ExamId};
             return View(QuestionVm);
         }
-
         
-
         [HttpPost]
         public ActionResult AddQuestion(AddQuestionsToExamViewModel vm, String ExamId)
         {

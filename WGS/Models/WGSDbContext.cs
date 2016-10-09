@@ -22,7 +22,7 @@ namespace WGS.Models
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Choice> Choices { get; set; }
         public DbSet<Level> Levels { get; set; }
-
+        public DbSet<Category> Categories { get; set; }
         public static WgsDbContext Create()
         {
             return new WgsDbContext();

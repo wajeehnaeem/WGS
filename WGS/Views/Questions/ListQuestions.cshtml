@@ -30,16 +30,16 @@
                 </tr>
             }
         }
-
-
     </table>
 
-    using (var form = Html.Bootstrap().Form(controllerName: "Questions", actionName: "AddQuestion", routeValues: new {Model.ExamId}).Begin())
+    using (var form = Html.Bootstrap().Form(controllerName: "Questions", actionName: "AddQuestion", routeValues: new { Model.ExamId }).Begin())
     {
         @form.EditorFor(f => f.QuestionText)
+        @form.SelectFor(c=>c.CategoryId, Model.CategoryeSelectList)
         @form.Submit("Add Question")
     }
 }
+
 
 @using (Html.Bootstrap().GridColumn(8).Begin())
 {

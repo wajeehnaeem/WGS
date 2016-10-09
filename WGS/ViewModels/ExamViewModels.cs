@@ -4,7 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Newtonsoft.Json;
 using WGS.Models;
+using DataType = System.ComponentModel.DataAnnotations.DataType;
 
 namespace WGS.ViewModels
 {
@@ -44,6 +47,8 @@ namespace WGS.ViewModels
     {
         public IEnumerable<Question> Questions { get; set; }
         public String ExamId { get; set; }
+        public String CategoryId { get; set; }
+        public SelectList CategoryeSelectList => new SelectList(Helpers.Context.Categories.ToList(), "Id", "Name");
 
         [Required(ErrorMessage = "This is a required field")]
         [Display(Name = "Enter Question Text")]

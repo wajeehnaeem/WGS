@@ -3,22 +3,22 @@
 @{
     ViewBag.Title = "ListChoicesForQuestion";
     Styles.Render("~/bundles/bootstrap");
-    
 }
 
-<h2>Choices</h2>
+
 
 @using (var table = Html.Bootstrap().Table().Begin())
 {
-    @table.TableData("Choice")
-    @table.TableData("Right Choice")
+    @table.TableHeader("Choice")
+    @table.TableHeader("Right Choice")
 
     foreach (var q in Model.Choices)
     {
         using (var row = table.TableRow().Begin())
         {
-            @table.TableData(q.ChoiceText)
-            @table.TableData(q.IsCorrect)
+            
+            @row.TableData(q.ChoiceText)
+            @row.TableData(q.IsCorrect)
         }
     }
 }

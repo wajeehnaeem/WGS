@@ -17,17 +17,18 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var exam in Model)
-        {
-            <tr>
-                <td>@exam.Name</td>
-                <td>@exam.DateFrom</td>
-                <td>@exam.DateTo</td>
-                <td>@exam.IsActive</td>
-                <td>@exam.Level.Name</td>
-                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ListQuestions", routeValues: new { @ExamId = exam.Id }, text: "Select")</td>
-                <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ExamDetails", routeValues: new { @ExamId = exam.Id }, text: "Details")</td>
-            </tr>
-        }
+    
+    @foreach (var exam in Model)
+    {
+        <tr>
+            <td>@exam.Name</td>
+            <td>@exam.DateFrom</td>
+            <td>@exam.DateTo</td>
+            <td>@exam.IsActive</td>
+            <td>@exam.Level.Name</td>
+            <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ListQuestions", routeValues: new {@ExamId = exam.Id}, text: "Select")</td>
+            <td>@Html.Bootstrap().Link(controllerName: "Examination", actionName: "ExamDetails", routeValues: new {@ExamId = exam.Id}, text: "Details")</td>
+        </tr>
+    }
     </tbody>
 </table>
